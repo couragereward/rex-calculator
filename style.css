@@ -1,0 +1,602 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #080808;
+    --panel: #151515;
+    --panel-light: #1c1c1c;
+    --button: #202020;
+    --button-hover: #292929;
+    --border: #303030;
+    --white: #f5f1e8;
+    --muted: #888;
+    --gold: #d4af37;
+    --gold-light: #f0cf58;
+    --crimson: #a9162b;
+    --crimson-dark: #781322;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background:
+        radial-gradient(circle at top, #171717 0%, #080808 45%, #050505 100%);
+    color: var(--white);
+    font-family: Arial, sans-serif;
+}
+
+button {
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 520px;
+    padding: 20px;
+    border: 1px solid #292929;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #181818, #101010);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.8),
+        inset 0 1px rgba(255, 255, 255, 0.03);
+}
+
+/* BRAND */
+
+.brand {
+    margin-bottom: 14px;
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-align: center;
+}
+
+/* DISPLAY */
+
+.screen {
+    min-height: 125px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border: 1px solid #292929;
+    border-radius: 16px;
+    background:
+        linear-gradient(145deg, #050505, #0c0c0c);
+    box-shadow:
+        inset 0 0 25px rgba(0, 0, 0, 0.8),
+        0 5px 20px rgba(0, 0, 0, 0.25);
+    text-align: right;
+}
+
+#expression {
+    min-height: 24px;
+    margin-bottom: 7px;
+    color: var(--muted);
+    font-size: 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+#expression::-webkit-scrollbar {
+    display: none;
+}
+
+#display {
+    color: var(--white);
+    font-size: 38px;
+    font-weight: 700;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+#display::-webkit-scrollbar {
+    display: none;
+}
+
+/* TOP CONTROLS */
+
+.top-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 9px;
+}
+
+.top-controls button,
+#scientificToggle {
+    min-height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--button);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.1s ease;
+}
+
+.top-controls button:hover,
+#scientificToggle:hover {
+    background: var(--button-hover);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.top-controls button:active,
+#scientificToggle:active {
+    transform: scale(0.97);
+}
+
+/* SCIENTIFIC TOGGLE */
+
+#scientificToggle {
+    width: 100%;
+    margin-bottom: 9px;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+/* SCIENTIFIC PANEL */
+
+#scientificPanel {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #292929;
+    border-radius: 15px;
+    background: #0e0e0e;
+}
+
+#scientificPanel.show {
+    display: block;
+    animation: scienceOpen 0.18s ease;
+}
+
+@keyframes scienceOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* SCIENTIFIC BUTTONS */
+
+.scientific {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    margin-bottom: 10px;
+}
+
+.scientific button,
+.trig-buttons button {
+    min-height: 40px;
+    border: 1px solid #303030;
+    border-radius: 9px;
+    background: #1d1d1d;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.1s ease;
+}
+
+.scientific button:hover,
+.trig-buttons button:hover {
+    background: #282828;
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-1px);
+}
+
+.scientific button:active,
+.trig-buttons button:active {
+    transform: scale(0.95);
+}
+
+/* TRIG SECTION */
+
+.trig {
+    padding: 10px;
+    border: 1px solid #292929;
+    border-radius: 12px;
+    background: #121212;
+}
+
+.trig-title {
+    margin-bottom: 8px;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.trig-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+}
+
+.trig-buttons button {
+    min-height: 38px;
+}
+
+/* MAIN CALCULATOR BUTTONS */
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.buttons button {
+    min-height: 56px;
+    border: 1px solid #303030;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #242424, #1b1b1b);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.025);
+    transition:
+        background 0.12s ease,
+        border-color 0.12s ease,
+        transform 0.08s ease,
+        box-shadow 0.12s ease;
+}
+
+.buttons button:hover {
+    background: linear-gradient(145deg, #2b2b2b, #202020);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+}
+
+.buttons button:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+/* CLEAR */
+
+.danger {
+    background: linear-gradient(
+        145deg,
+        var(--crimson),
+        var(--crimson-dark)
+    ) !important;
+
+    border-color: var(--crimson) !important;
+    color: #fff !important;
+}
+
+.danger:hover {
+    background: #b51b32 !important;
+    border-color: #d12a43 !important;
+}
+
+/* OPERATORS */
+
+.operator {
+    color: var(--gold) !important;
+}
+
+/* EQUALS */
+
+.equals {
+    grid-column: span 4;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--gold-light),
+            var(--gold)
+        ) !important;
+
+    border-color: var(--gold) !important;
+    color: var(--black) !important;
+    font-size: 21px !important;
+}
+
+.equals:hover {
+    background: #f5d96c !important;
+    border-color: #f5d96c !important;
+}
+
+/* ANSWERS */
+
+.answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.answer-box {
+    min-height: 68px;
+    padding: 11px;
+    border: 1px solid #292929;
+    border-radius: 11px;
+    background: #101010;
+    overflow: hidden;
+}
+
+.answer-box small,
+.answer-title {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.answer-box strong,
+.answer-value {
+    display: block;
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 700;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.answer-box strong::-webkit-scrollbar,
+.answer-value::-webkit-scrollbar {
+    display: none;
+}
+
+/* FRACTION */
+
+.fraction-button {
+    width: 100%;
+    min-height: 40px;
+    margin-top: 8px;
+    border: 1px solid #333;
+    border-radius: 9px;
+    background: #1c1c1c;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.fraction-button:hover {
+    background: #242424;
+    border-color: var(--gold);
+}
+
+.fraction-button:active {
+    transform: scale(0.98);
+}
+
+/* HISTORY */
+
+.history {
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #292929;
+    border-radius: 13px;
+    background: #101010;
+}
+
+.history-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+#clearHistory {
+    padding: 5px 9px;
+    border: 1px solid #333;
+    border-radius: 7px;
+    background: #1d1d1d;
+    color: #999;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#clearHistory:hover {
+    color: var(--white);
+    border-color: var(--gold);
+}
+
+#historyList {
+    max-height: 130px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
+}
+
+.history-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #252525;
+}
+
+.history-expression {
+    color: #777;
+    font-size: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.history-result {
+    margin-top: 3px;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* FOCUS */
+
+button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* TABLET */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .calculator {
+        margin-top: 5px;
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .brand {
+        margin-bottom: 10px;
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+
+    .screen {
+        min-height: 105px;
+        padding: 13px;
+    }
+
+    #display {
+        font-size: 30px;
+    }
+
+    #expression {
+        font-size: 12px;
+    }
+
+    .scientific {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .scientific button {
+        min-height: 38px;
+        font-size: 12px;
+    }
+
+    .trig-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .buttons {
+        gap: 7px;
+    }
+
+    .buttons button {
+        min-height: 53px;
+        font-size: 17px;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .history {
+        padding: 10px;
+    }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    body {
+        padding: 6px;
+    }
+
+    .calculator {
+        padding: 11px;
+    }
+
+    .scientific {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .scientific button {
+        min-height: 36px;
+        font-size: 11px;
+    }
+
+    .buttons {
+        gap: 5px;
+    }
+
+    .buttons button {
+        min-height: 48px;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+    .top-controls button,
+    #scientificToggle {
+        min-height: 39px;
+    }
+
+    .equals {
+        font-size: 19px !important;
+    }
+
+    #display {
+        font-size: 27px;
+    }
+}
+
+/* VERY SMALL HEIGHT SCREENS */
+
+@media (max-height: 700px) and (min-width: 601px) {
+
+    body {
+        align-items: flex-start;
+    }
+
+    .calculator {
+        margin-top: 10px;
+    }
+
+    .screen {
+        min-height: 100px;
+    }
+
+    .buttons button {
+        min-height: 50px;
+    }
+
+    .history {
+        display: none;
+    }
+}

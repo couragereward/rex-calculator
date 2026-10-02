@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REX Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <div class="brand">
+        REX • CALCULATOR
+    </div>
+
+    <div class="screen">
+        <div id="expression"></div>
+        <div id="display">0</div>
+    </div>
+
+    <div class="top-controls">
+        <button id="angleMode">DEG</button>
+        <button id="backspace">⌫</button>
+    </div>
+
+    <button id="scientificToggle">
+        SCI ▼
+    </button>
+
+    <div id="scientificPanel">
+
+        <div class="scientific">
+
+            <button data-function="sin">sin</button>
+            <button data-function="cos">cos</button>
+            <button data-function="tan">tan</button>
+
+            <button data-function="asin">sin⁻¹</button>
+            <button data-function="acos">cos⁻¹</button>
+            <button data-function="atan">tan⁻¹</button>
+
+            <button data-function="cot">cot</button>
+            <button data-function="sec">sec</button>
+            <button data-function="csc">csc</button>
+
+            <button data-function="sqrt">√</button>
+            <button data-function="cbrt">∛</button>
+            <button data-function="abs">abs</button>
+
+            <button data-power="2">x²</button>
+            <button data-power="3">x³</button>
+            <button data-power="y">xʸ</button>
+
+            <button data-constant="pi">π</button>
+            <button data-constant="e">e</button>
+            <button data-function="log">log</button>
+
+            <button data-function="ln">ln</button>
+            <button data-function="factorial">x!</button>
+
+        </div>
+
+        <div class="trig">
+
+            <div class="trig-title">
+                SOH • CAH • TOA
+            </div>
+
+            <div class="trig-buttons">
+                <button id="soh">SOH</button>
+                <button id="cah">CAH</button>
+                <button id="toa">TOA</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <button class="danger" id="clear">AC</button>
+
+        <button class="operator" data-value="(">(</button>
+        <button class="operator" data-value=")">)</button>
+        <button class="operator" data-value="/">÷</button>
+
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button class="operator" data-value="*">×</button>
+
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button class="operator" data-value="-">−</button>
+
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button class="operator" data-value="+">+</button>
+
+        <button class="operator" id="percent">%</button>
+        <button id="sign">±</button>
+        <button data-value="0">0</button>
+        <button data-value=".">.</button>
+
+        <button class="equals" id="equals">=</button>
+
+    </div>
+
+    <div class="answers">
+
+        <div class="answer-box">
+            <small>EXACT</small>
+            <strong id="exactAnswer">—</strong>
+        </div>
+
+        <div class="answer-box">
+            <small>DECIMAL</small>
+            <strong id="decimalAnswer">—</strong>
+        </div>
+
+    </div>
+
+    <button class="fraction-button" id="fractionButton">
+        DECIMAL → FRACTION
+    </button>
+
+    <div class="history">
+
+        <div class="history-title">
+            <span>HISTORY</span>
+
+            <button id="clearHistory">
+                Clear
+            </button>
+        </div>
+
+        <div id="historyList">
+            <p>No calculations yet.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
